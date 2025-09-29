@@ -1,0 +1,77 @@
+@font-face {
+  font-family: Cardo;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("//miamitripbags.com/cdn/fonts/cardo/cardo_n4.eebb245e383be6550785a657b25f51c2b83d7e78.woff2?h1=ZDZiNTE3LWY2LmFjY291bnQubXlzaG9waWZ5LmNvbQ&h2=bWlhbWl0cmlwYmFncy5jb20&hmac=c00639d064eba96608829fbefee17f4cf915507b368adb7433a150ce1c9bac96") format("woff2"),
+       url("//miamitripbags.com/cdn/fonts/cardo/cardo_n4.5873ec3470fadfb2463a972a55c13c82fcea3051.woff?h1=ZDZiNTE3LWY2LmFjY291bnQubXlzaG9waWZ5LmNvbQ&h2=bWlhbWl0cmlwYmFncy5jb20&hmac=e4c3a9f609364090260d04508c7457decd59c40cba790a5e21bf7689a8ac0b3f") format("woff");
+}
+
+@font-face {
+  font-family: "Avenir Next";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("//miamitripbags.com/cdn/fonts/avenir_next/avenirnext_n4.7fd0287595be20cd5a683102bf49d073b6abf144.woff2?h1=ZDZiNTE3LWY2LmFjY291bnQubXlzaG9waWZ5LmNvbQ&h2=bWlhbWl0cmlwYmFncy5jb20&hmac=3387e9529d32979d9fca76235bc2471a0766d0d779aa4f94c5ec9ff12de9c8e5") format("woff2"),
+       url("//miamitripbags.com/cdn/fonts/avenir_next/avenirnext_n4.a26a334a0852627a5f36b195112385b0cd700077.woff?h1=ZDZiNTE3LWY2LmFjY291bnQubXlzaG9waWZ5LmNvbQ&h2=bWlhbWl0cmlwYmFncy5jb20&hmac=d81f5a9051f5bad35f607361e775c6c47a6f4ab3315c820e5773c5548dfce148") format("woff");
+}
+
+@font-face {
+  font-family: "Avenir Next";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("//miamitripbags.com/cdn/fonts/avenir_next/avenirnext_n4.7fd0287595be20cd5a683102bf49d073b6abf144.woff2?h1=ZDZiNTE3LWY2LmFjY291bnQubXlzaG9waWZ5LmNvbQ&h2=bWlhbWl0cmlwYmFncy5jb20&hmac=3387e9529d32979d9fca76235bc2471a0766d0d779aa4f94c5ec9ff12de9c8e5") format("woff2"),
+       url("//miamitripbags.com/cdn/fonts/avenir_next/avenirnext_n4.a26a334a0852627a5f36b195112385b0cd700077.woff?h1=ZDZiNTE3LWY2LmFjY291bnQubXlzaG9waWZ5LmNvbQ&h2=bWlhbWl0cmlwYmFncy5jb20&hmac=d81f5a9051f5bad35f607361e775c6c47a6f4ab3315c820e5773c5548dfce148") format("woff");
+}
+
+
+
+  @font-face {
+  font-family: Cardo;
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("//miamitripbags.com/cdn/fonts/cardo/cardo_n7.d02b7fb13fc5aac90b5334d99f92017ede2099f6.woff2?h1=ZDZiNTE3LWY2LmFjY291bnQubXlzaG9waWZ5LmNvbQ&h2=bWlhbWl0cmlwYmFncy5jb20&hmac=daf8ddf749bc1eb17b44787a5512fc4ba591346cfa6a36a3dba439a0d52ed37a") format("woff2"),
+       url("//miamitripbags.com/cdn/fonts/cardo/cardo_n7.2bbbb0d9819b97cd025c56641e4eb6435f1c07d0.woff?h1=ZDZiNTE3LWY2LmFjY291bnQubXlzaG9waWZ5LmNvbQ&h2=bWlhbWl0cmlwYmFncy5jb20&hmac=d6a1fcd4d95e9f41f480f70f264f7979e8068c9abb92234eb38bf8133437b072") format("woff");
+}
+
+
+
+
+  @font-face {
+  font-family: "Avenir Next";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("//miamitripbags.com/cdn/fonts/avenir_next/avenirnext_n5.972a96b7a049f12c89d6d1cd0e1b6c9211f7ba14.woff2?h1=ZDZiNTE3LWY2LmFjY291bnQubXlzaG9waWZ5LmNvbQ&h2=bWlhbWl0cmlwYmFncy5jb20&hmac=f241a67382e78583923f7239ec7f0edee307a149b4fe0de5a3a6cef391d77f3b") format("woff2"),
+       url("//miamitripbags.com/cdn/fonts/avenir_next/avenirnext_n5.9e88d20fa9eb66ba268ac60ab013006ef69a310a.woff?h1=ZDZiNTE3LWY2LmFjY291bnQubXlzaG9waWZ5LmNvbQ&h2=bWlhbWl0cmlwYmFncy5jb20&hmac=c315dbeeda142035ed514f6e8f7be0fb8f765671353cb62bc74120cb89c24f77") format("woff");
+}
+
+
+
+
+
+
+
+  @font-face {
+  font-family: "Avenir Next";
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  src: url("//miamitripbags.com/cdn/fonts/avenir_next/avenirnext_i4.f1583d9f457b68e44fbda187a48b4096d547d7f4.woff2?h1=ZDZiNTE3LWY2LmFjY291bnQubXlzaG9waWZ5LmNvbQ&h2=bWlhbWl0cmlwYmFncy5jb20&hmac=77b8cbd736b19d03033933cf52dfc2568f8901ce8c1ea69d9bd2abd56dcdb8aa") format("woff2"),
+       url("//miamitripbags.com/cdn/fonts/avenir_next/avenirnext_i4.67fb53a3e0351125941146246183577ae8d8bf23.woff?h1=ZDZiNTE3LWY2LmFjY291bnQubXlzaG9waWZ5LmNvbQ&h2=bWlhbWl0cmlwYmFncy5jb20&hmac=d72215a6c027c83fe011e8c9e910f00ac25b068b3f2a91efd38f01a5fca1dc37") format("woff");
+}
+
+
+
+
+  @font-face {
+  font-family: "Avenir Next";
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+  src: url("//miamitripbags.com/cdn/fonts/avenir_next/avenirnext_i5.2d1a6d537e5b485482d6bcca34a56cc10d441a55.woff2?h1=ZDZiNTE3LWY2LmFjY291bnQubXlzaG9waWZ5LmNvbQ&h2=bWlhbWl0cmlwYmFncy5jb20&hmac=1c190c03ce72d1980e09c2995e526b375f19fa829b1e9b9050cda995b1f586e9") format("woff2"),
+       url("//miamitripbags.com/cdn/fonts/avenir_next/avenirnext_i5.fcfa37c68ca483c41031623bfae4701d99bb4b95.woff?h1=ZDZiNTE3LWY2LmFjY291bnQubXlzaG9waWZ5LmNvbQ&h2=bWlhbWl0cmlwYmFncy5jb20&hmac=25595a6474ab71f6b629eebbdbdae22f75c487275f2d09d12a72f490ca210366") format("woff");
+}
+
