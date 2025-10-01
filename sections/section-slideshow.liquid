@@ -95,14 +95,28 @@
           -%}
 
           <div class="slideshow__slide slideshow__slide--{{ block.id }} frame wide-image {{ section.settings.height }} {{ section.settings.mobile_height }}{% if forloop.first %} is-selected{% endif %}"
+            {{ block.shopify_attributes }}
             {{ color_settings }}
             data-slide="{{ block.id }}"
             data-slide-index="{{ forloop.index0 }}"
-            data-slide-text-color="{{ text_color }}"
-            {{ block.shopify_attributes }}>
-
+            data-slide-text-color="{{ text_color }}">
             {%- if first_button_text == blank and first_button_link != blank -%}
-              <a class="hero__image frame__item" href="{{ first_button_link }}">
+              <a class="btn {{ first_button_size }} {{ first_button_style }} {{ first_button_type }}
+                {% unless block.settings.first_button_hover_background %} btn--no-hover-bg{% endunless %}
+                {% if block.settings.first_button_no_background %} btn--no-bg{% endif %}
+                {% if block.settings.first_button_border_bottom %} btn--border-bottom{% endif %}"
+                href="{{ first_button_link }}"
+                style="
+                  font-family: {{ block.settings.first_button_font_family }};
+                  font-weight: {{ block.settings.first_button_font_weight }};
+                  color: {{ block.settings.first_button_text_color }};
+                "
+              >
+                <span>{{ first_button_text | escape }}</span>
+                {%- if first_button_show_arrow -%}
+                  {%- render 'icon-arrow-right' -%}
+                {%- endif -%}
+              </a>
             {%- else -%}
               <div class="hero__image frame__item">
             {%- endif -%}
@@ -147,42 +161,134 @@
                 data-aos-anchor="{{ animation_anchor }}"
                 data-aos-order="{{ animation_order }}">
                 <div class="hero__content{% if hero_transparent %} hero__content--transparent{% if show_overlay_text %} backdrop--radial{% endif %}{% endif %}"{% if show_header_backdrop %} style="--overlay-bg: {{ overlay_color }}; --overlay-opacity: {{ overlay_opacity }};"{% endif %}>
-                  {%- unless block.settings.title == '' -%}
+                {%- unless block.settings.title == '' -%}
+               
+                  {% assign mobile_title_position = block.settings.mobile_title_position | default: 'overlay' %}
+                  <div class="slideshow__title-block {{ mobile_title_position }}" {{ block.shopify_attributes }}>
                     {%- assign font_size_class = block.settings.heading_size | prepend: 'heading-size-' -%}
                     <h2 class="hero__title {{ font_size_class }}"
-                      data-aos="hero"
-                      data-aos-anchor="{{ animation_anchor }}"
-                      data-aos-order="{{ animation_order }}">
-                      {{ block.settings.title | escape }}
-                    </h2>
-                    {%- assign animation_order = animation_order | plus: 1 -%}
-                  {%- endunless -%}
+                    style="
+                       --top: {{ block.settings.title_margin_top | default: 0 }}%;
+                       --left: {{ block.settings.title_margin_left | default: 0 }}%;
+                      position: absolute;
+                      font-family: {{ block.settings.title_font_family }};
+                      font-weight: {{ block.settings.title_font_weight }};
+                      color: {{ block.settings.title_font_color }};
+                      --mobile-top: {{ block.settings.mobile_title_margin_top | default: 0 }}%;
+                      --mobile-left: {{ block.settings.mobile_title_margin_left | default: 0 }}%;
+                      --mobile-align: {{ block.settings.mobile_title_align }};
+                       --font-size-desktop: {{ block.settings.title_font_size_desktop | default: 2.5 }}rem;
+                       --font-size-tablet: {{ block.settings.title_font_size_tablet | default: 2 }}rem;
+                       --font-size-mobile: {{ block.settings.title_font_size_mobile | default: 2 }}rem;
+                       --font-size-desktop-xl: {{ block.settings.title_font_size_desktop_xl | default: 3 }}rem;
+                      --top-xl: {{ block.settings.title_margin_top_xl | default: 0 }}%;
+                      --left-xl: {{ block.settings.title_margin_left_xl | default: 0 }}%;
+                      --font-size-desktop-xx: {{ block.settings.title_font_size_desktop_xx | default: 2.2 }}rem;
+                      --top-xx: {{ block.settings.title_margin_top_xx | default: 0 }}%;
+                      --left-xx: {{ block.settings.title_margin_left_xx | default: 0 }}%;
+                    ">
+                    {{ block.settings.title | escape }}
+                  </h2>
+                  </div>
+                  {%- assign animation_order = animation_order | plus: 1 -%}
+                {%- endunless -%}
 
                   {%- unless block.settings.description == '' -%}
                     {%- assign font_size_class = block.settings.text_size | prepend: 'body-size-' -%}
+                  
                     <p class="hero__description h5--body {{ font_size_class }}"
+                      style="
+                        top: {{ block.settings.description_margin_top | default: 0 }}%;
+                        right: {{ block.settings.description_margin_right | default: 0 }}%;
+                        bottom: {{ block.settings.description_margin_bottom | default: 0 }}%;
+                        left: {{ block.settings.description_margin_left | default: 0 }}%;
+                        position: absolute;
+                        font-family: {{ block.settings.description_font_family }};
+                        font-weight: {{ block.settings.description_font_weight }};
+                        color: {{ block.settings.description_font_color }};
+                        --font-size-desktop: {{ block.settings.description_font_size_desktop | default: 1.2 }}rem;
+                        --font-size-tablet: {{ block.settings.description_font_size_tablet | default: 1.1 }}rem;
+                        --font-size-mobile: {{ block.settings.description_font_size_mobile | default: 1 }}rem;
+                        --max-width: {{ block.settings.description_max_width | default: 65 }}%;
+                        --mobile-description-max-width: {{ block.settings.description_max_width_mobile | default: 90 }}%;
+                        --text-align-desktop: {{ block.settings.description_text_align | default: 'left' }};
+                        --text-align-mobile: {{ block.settings.description_text_align_mobile | default: 'left' }};
+                        --mobile-description-top: {{ block.settings.description_mobile_margin_top | default: 0 }}%;
+                        --mobile-description-left: {{ block.settings.description_mobile_margin_left | default: 0 }}%;
+                        --mobile-description-align: {{ block.settings.description_mobile_align }};
+                        --font-size-desktop-xl: {{ block.settings.description_font_size_desktop_xl | default: 1.5 }}rem;
+                        --top-xl: {{ block.settings.description_margin_top_xl | default: 0 }}%;
+                        --left-xl: {{ block.settings.description_margin_left_xl | default: 0 }}%;
+                        --font-size-desktop-xx: {{ block.settings.description_font_size_desktop_xx | default: 1.1 }}rem;
+                        --top-xx: {{ block.settings.description_margin_top_xx | default: 0 }}%;
+                        --left-xx: {{ block.settings.description_margin_left_xx | default: 0 }}%;
+                        "
                       data-aos="hero"
                       data-aos-anchor="{{ animation_anchor }}"
                       data-aos-order="{{ animation_order }}">
                       {{ block.settings.description }}
                     </p>
+                 
                     {%- assign animation_order = animation_order | plus: 1 -%}
                   {%- endunless -%}
 
                   {%- if first_button_text != blank or second_button_text != blank -%}
-                    <div class="hero__button-group">
+                    <div class="hero__button-group"
+                    
+                       style="
+                          --top: {{ block.settings.first_button_margin_top }}%;
+                          --left: {{ block.settings.first_button_margin_left }}%;
+                          --mobile-top: {{ block.settings.first_button_mobile_margin_top }}%;
+                          --mobile-left: {{ block.settings.first_button_mobile_margin_left }}%;
+                          --text-align-desktop: {{ block.settings.first_button_text_align }};
+                          --text-align-mobile: {{ block.settings.first_button_mobile_align }};
+                          --font-size-desktop-xl: {{ block.settings.first_button_font_size_desktop_xl | default: 1.2 }}rem;
+                          --top-xl: {{ block.settings.first_button_margin_top_xl | default: 0 }}%;
+                          --left-xl: {{ block.settings.first_button_margin_left_xl | default: 0 }}%;
+                          --font-size-desktop-xx: {{ block.settings.first_button_font_size_desktop_xx | default: 1 }}rem;
+                          --top-xx: {{ block.settings.first_button_margin_top_xx | default: 0 }}%;
+                          --left-xx: {{ block.settings.first_button_margin_left_xx | default: 0 }}%;
+                        "
+                    >
                       {%- unless first_button_text == blank -%}
                         <div class="hero__button"
+
+                        style="
+                              top: {{ block.settings.first_button_margin_top }}%;
+                              left: {{ block.settings.first_button_margin_left }}%;
+                              max-width: {{ block.settings.first_button_max_width }}%;
+                              font-family: {{ block.settings.first_button_font_family }};
+                              font-weight: {{ block.settings.first_button_font_weight }};
+                              color: {{ block.settings.first_button_text_color }};
+                              --font-size-desktop: {{ block.settings.first_button_font_size_desktop }}rem;
+                              --font-size-tablet: {{ block.settings.first_button_font_size_tablet }}rem;
+                              --font-size-mobile: {{ block.settings.first_button_font_size_mobile }}rem;
+                              --text-align-desktop: {{ block.settings.first_button_text_align }};
+                              --text-align-mobile: {{ block.settings.first_button_mobile_align }};
+                              --mobile-max-width: {{ block.settings.first_button_max_width_mobile }}%;
+                              --font-size-desktop-xx: {{ block.settings.first_button_font_size_desktop_xx | default: 1 }}rem;
+                              --top-xx: {{ block.settings.first_button_margin_top_xx | default: 0 }}%;
+                              --left-xx: {{ block.settings.first_button_margin_left_xx | default: 0 }}%;
+                            "
                           data-aos="hero"
                           data-aos-anchor="{{ animation_anchor }}"
                           data-aos-order="{{ animation_order }}">
-                          <a class="btn {{ first_button_size }} {{ first_button_style }} {{ first_button_type }}" href="{{ first_button_link }}">
-                            <span>{{ first_button_text | escape }}</span>
-
-                            {%- if first_button_show_arrow -%}
-                              {%- render 'icon-arrow-right' -%}
-                            {%- endif -%}
-                          </a>
+                         <a class="btn {{ first_button_size }} {{ first_button_style }} {{ first_button_type }}
+                          {% unless block.settings.first_button_hover_background %} btn--no-hover-bg{% endunless %}
+                          {% if block.settings.first_button_no_background %} btn--no-bg{% endif %}
+                          {% if block.settings.first_button_border_bottom %} btn--border-bottom{% endif %}"
+                          href="{{ first_button_link }}"
+                          style="
+                            font-family: {{ block.settings.first_button_font_family }};
+                            font-weight: {{ block.settings.first_button_font_weight }};
+                            color: {{ block.settings.first_button_text_color }};
+                          "
+                        >
+                          <span>{{ first_button_text | escape }}</span>
+                          {%- if first_button_show_arrow -%}
+                            {%- render 'icon-arrow-right' -%}
+                          {%- endif -%}
+                        </a>
                         </div>
                       {%- endunless -%}
 
@@ -339,6 +445,7 @@
           "type": "header",
           "content": "Overlay"
         },
+         
         {
           "type": "range",
           "id": "overlay_opacity",
@@ -364,14 +471,82 @@
         },
         {
           "type": "header",
-          "content": "Text"
+          "content": "Title",
+          
         },
-        {
+         {
           "type": "text",
           "id": "title",
           "label": "Heading",
           "default": "Image slide"
         },
+        {
+          "type": "select",
+          "id": "title_font_family",
+          "label": "Font family for title",
+          "default": "inherit",
+          "options": [
+            { "value": "inherit", "label": "Default" },
+            { "value": "serif", "label": "Serif" },
+            { "value": "sans-serif", "label": "Sans Serif" },
+            { "value": "monospace", "label": "Monospace" },
+            { "value": "'Playfair Display', serif", "label": "Playfair Display" },
+            { "value": "'Roboto', sans-serif", "label": "Roboto" },
+            { "value": "'Montserrat', sans-serif", "label": "Montserrat" },
+            { "value": "'Lora', serif", "label": "Lora" },
+            { "value": "'Merriweather', serif", "label": "Merriweather" },
+            { "value": "'Raleway', sans-serif", "label": "Raleway" },
+            { "value": "'Open Sans', sans-serif", "label": "Open Sans" },
+            { "value": "'Oswald', sans-serif", "label": "Oswald" },
+            { "value": "'Poppins', sans-serif", "label": "Poppins" },
+            { "value": "'Cinzel', serif", "label": "Cinzel (Trajan-like)" }
+          ]
+        },
+          {
+            "type": "color",
+            "id": "title_font_color",
+            "label": "Title text color",
+            "default": "#FFFFFF"
+          },
+        {
+          "type": "select",
+          "id": "title_font_weight",
+          "label": "Font weight for title",
+          "default": "400",
+          "options": [
+            { "value": "300", "label": "Light (300)" },
+            { "value": "400", "label": "Regular (400)" },
+            { "value": "500", "label": "Medium (500)" },
+            { "value": "600", "label": "Semi-bold (600)" },
+            { "value": "700", "label": "Bold (700)" },
+            { "value": "800", "label": "Extra-bold (800)" }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Title"
+        },
+        {
+          "type": "range",
+          "id": "title_margin_top",
+          "label": "Top",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "title_margin_left",
+          "label": "Left",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+       
         {
           "type":  "range",
           "id":    "heading_size",
@@ -380,6 +555,139 @@
           "max": 15,
           "step": 1,
           "default":11
+        },
+        {
+          "type": "header",
+          "content": "Title width XL"
+        },
+        {
+          "type": "range",
+          "id": "title_font_size_desktop_xl",
+          "label": "Title font size (XL desktop)",
+          "unit": "rem",
+          "min": 1,
+          "max": 10,
+          "step": 0.2,
+          "default": 3
+        },
+        {
+          "type": "range",
+          "id": "title_margin_top_xl",
+          "label": "Title top (XL desktop)",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "title_margin_left_xl",
+          "label": "Title left (XL desktop)",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Title width XX"
+        },
+        {
+          "type": "range",
+          "id": "title_font_size_desktop_xx",
+          "label": "Title font size (XX)",
+          "unit": "rem",
+          "min": 1,
+          "max": 5,
+          "step": 0.1,
+          "default": 2.2
+        },
+        {
+          "type": "range",
+          "id": "title_margin_top_xx",
+          "label": "Title top (XX)",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "title_margin_left_xx",
+          "label": "Title left (XX)",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+         {
+        "type": "header",
+        "content": "Mobile title position"
+        },
+        {
+          "type": "range",
+          "id": "mobile_title_margin_top",
+          "label": "Mobile top",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "mobile_title_margin_left",
+          "label": "Mobile left",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+          {
+          "type": "range",
+          "id": "title_font_size_desktop",
+          "label": "Title font size (desktop)",
+          "unit": "rem",
+          "min": 1,
+          "max": 5,
+          "step": 0.1,
+          "default": 2.5
+        },
+        {
+          "type": "range",
+          "id": "title_font_size_tablet",
+          "label": "Title font size (tablet)",
+          "unit": "rem",
+          "min": 0,
+          "max": 5,
+          "step": 0.1,
+          "default": 2
+        },
+        {
+          "type": "range",
+          "id": "title_font_size_mobile",
+          "label": "Title font size (mobile)",
+          "unit": "rem",
+          "min": 0,
+          "max": 5,
+          "step": 0.1,
+          "default": 2
+        },
+          {
+          "type": "select",
+          "id": "mobile_title_align",
+          "label": "Mobile alignment",
+          "default": "center",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ]
         },
         {
           "type": "textarea",
@@ -414,6 +722,184 @@
           ]
         },
         {
+        "type": "header",
+        "content": "Description font"
+        },
+       
+      {
+      "type": "select",
+      "id": "description_font_family",
+      "label": "Font family for description",
+      "default": "inherit",
+      "options": [
+        { "value": "inherit", "label": "Default" },
+        { "value": "serif", "label": "Serif" },
+        { "value": "sans-serif", "label": "Sans Serif" },
+        { "value": "monospace", "label": "Monospace" },
+        { "value": "'Roboto', sans-serif", "label": "Roboto" },
+        { "value": "'Open Sans', sans-serif", "label": "Open Sans" },
+        { "value": "'Playfair Display', serif", "label": "Playfair Display" },
+        { "value": "'Montserrat', sans-serif", "label": "Montserrat" },
+        { "value": "'Lora', serif", "label": "Lora" },
+        { "value": "'Raleway', sans-serif", "label": "Raleway" },
+        { "value": "'Poppins', sans-serif", "label": "Poppins" },
+      ]
+    },
+       {
+      "type": "color",
+      "id": "description_font_color",
+      "label": "Description text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "select",
+      "id": "description_font_weight",
+      "label": "Font weight for description",
+      "default": "400",
+      "options": [
+        { "value": "300", "label": "Light (300)" },
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semi-bold (600)" },
+        { "value": "700", "label": "Bold (700)" },
+        { "value": "800", "label": "Extra-bold (800)" }
+      ]
+    },
+    
+     
+    {
+      "type": "range",
+      "id": "description_margin_top",
+      "label": "Top",
+      "min": -100,
+      "max": 100,
+      "step": 2,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "description_margin_left",
+      "label": "Left",
+      "min": -100,
+      "max": 100,
+      "step": 2,
+      "unit": "%",
+      "default": 0
+    },
+     {
+          "type": "header",
+          "content": "Description width (XL)"
+        },
+        {
+          "type": "range",
+          "id": "description_font_size_desktop_xl",
+          "label": "Description font size (XL desktop)",
+          "unit": "rem",
+          "min": 0.5,
+          "max": 10,
+          "step": 0.1,
+          "default": 1.5
+        },
+        {
+          "type": "range",
+          "id": "description_margin_top_xl",
+          "label": "Description top (XL desktop)",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "description_margin_left_xl",
+          "label": "Description left (XL desktop)",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Description width (XX)"
+        },
+        {
+          "type": "range",
+          "id": "description_font_size_desktop_xx",
+          "label": "Description font size (1145px)",
+          "unit": "rem",
+          "min": 0.5,
+          "max": 5,
+          "step": 0.1,
+          "default": 1.1
+        },
+        {
+          "type": "range",
+          "id": "description_margin_top_xx",
+          "label": "Description top (1145px)",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "description_margin_left_xx",
+          "label": "Description left (1145px)",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+    {
+      "type": "header",
+      "content": "Mobile description position"
+    },
+    {
+      "type": "range",
+      "id": "description_mobile_margin_top",
+      "label": "Mobile top",
+      "min": -100,
+      "max": 100,
+      "step": 2,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "description_mobile_margin_left",
+      "label": "Mobile left",
+      "min": -100,
+      "max": 100,
+      "step": 2,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "description_mobile_align",
+      "label": "Mobile text alignment",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+        "type": "range",
+        "id": "description_max_width_mobile",
+        "label": "Description max width (mobile, %)",
+        "min": 10,
+        "max": 100,
+        "step": 5,
+        "default": 90
+      },
+        {
           "type": "select",
           "id": "flex_align_mobile",
           "label": "Mobile alignment",
@@ -429,6 +915,45 @@
             { "value": "align--bottom-center-mobile", "label": "Bottom center"},
             { "value": "align--bottom-right-mobile", "label": "Bottom right"}
           ]
+        },
+        {
+          "type": "range",
+          "id": "description_max_width",
+          "label": "Description max width (%)",
+          "min": 10,
+          "max": 100,
+          "step": 5,
+          "default": 65
+        },
+        {
+          "type": "range",
+          "id": "description_font_size_desktop",
+          "label": "Description font size (desktop)",
+          "unit": "rem",
+          "min": 0.5,
+          "max": 10,
+          "step": 0.1,
+          "default": 1.2
+        },
+        {
+          "type": "range",
+          "id": "description_font_size_tablet",
+          "label": "Description font size (tablet)",
+          "unit": "rem",
+          "min": 0.5,
+          "max": 5,
+          "step": 0.1,
+          "default": 1.1
+        },
+        {
+          "type": "range",
+          "id": "description_font_size_mobile",
+          "label": "Description font size (mobile)",
+          "unit": "rem",
+          "min": 0.5,
+          "max": 5,
+          "step": 0.1,
+          "default": 1
         },
         {
           "type": "header",
@@ -500,6 +1025,248 @@
           "id": "first_button_show_arrow",
           "label": "Show arrow",
           "default": false
+        },
+        {
+          "type": "range",
+          "id": "first_button_margin_top",
+          "label": "Top",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "first_button_margin_left",
+          "label": "Left",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "first_button_max_width",
+          "label": "Max width (%)",
+          "min": 10,
+          "max": 100,
+          "step": 5,
+          "default": 40
+        },
+        {
+          "type": "select",
+          "id": "first_button_text_align",
+          "label": "Text alignment (desktop)",
+          "default": "center",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "First button (XL desktop)"
+        },
+        {
+          "type": "range",
+          "id": "first_button_font_size_desktop_xl",
+          "label": "Button font size (XL desktop)",
+          "unit": "rem",
+          "min": 0,
+          "max": 5,
+          "step": 0.1,
+          "default": 1.2
+        },
+        {
+          "type": "range",
+          "id": "first_button_margin_top_xl",
+          "label": "Button top (XL desktop)",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "first_button_margin_left_xl",
+          "label": "Button left (XL desktop)",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "header",
+          "content": "First button (XX)"
+        },
+        {
+          "type": "range",
+          "id": "first_button_font_size_desktop_xx",
+          "label": "Button font size (XX)",
+          "unit": "rem",
+          "min": 0,
+          "max": 3,
+          "step": 0.1,
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "first_button_margin_top_xx",
+          "label": "Button top (XX)",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "first_button_margin_left_xx",
+          "label": "Button left (XX)",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "header",
+          "content": "First button (mobile)"
+        },
+        
+      {
+        "type": "select",
+        "id": "first_button_font_family",
+        "label": "Font family for first button",
+        "default": "inherit",
+        "options": [
+          { "value": "inherit", "label": "Default" },
+          { "value": "'Poppins', sans-serif", "label": "Poppins" },
+          { "value": "'Roboto', sans-serif", "label": "Roboto" },
+          { "value": "'Playfair Display', serif", "label": "Playfair Display" },
+          { "value": "'Montserrat', sans-serif", "label": "Montserrat" },
+          { "value": "'Lora', serif", "label": "Lora" },
+          { "value": "'Merriweather', serif", "label": "Merriweather" },
+          { "value": "'Raleway', sans-serif", "label": "Raleway" },
+          { "value": "'Open Sans', sans-serif", "label": "Open Sans" },
+          { "value": "'Oswald', sans-serif", "label": "Oswald" },
+          { "value": "'Nunito', sans-serif", "label": "Nunito" },
+          { "value": "'Cinzel', serif", "label": "Cinzel" },
+          { "value": "'Source Sans Pro', sans-serif", "label": "Source Sans Pro" },
+          { "value": "'Quicksand', sans-serif", "label": "Quicksand" }
+        ]
+      },
+        {
+          "type": "select",
+          "id": "first_button_font_weight",
+          "label": "Font weight",
+          "default": "500",
+          "options": [
+            { "value": "300", "label": "Light" },
+            { "value": "400", "label": "Regular" },
+            { "value": "500", "label": "Medium" },
+            { "value": "600", "label": "Semi-bold" },
+            { "value": "700", "label": "Bold" }
+          ]
+        },
+        {
+          "type": "color",
+          "id": "first_button_text_color",
+          "label": "Text color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "checkbox",
+          "id": "first_button_no_background",
+          "label": "Remove button background",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "first_button_hover_background",
+          "label": "Enable hover background",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "first_button_border_bottom",
+          "label": "Show underline only",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "first_button_font_size_desktop",
+          "label": "Font size (desktop)",
+          "unit": "rem",
+          "min": 0,
+          "max": 3,
+          "step": 0.1,
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "first_button_font_size_tablet",
+          "label": "Font size (tablet)",
+          "unit": "rem",
+          "min": 0,
+          "max": 3,
+          "step": 0.1,
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "first_button_font_size_mobile",
+          "label": "Font size (mobile)",
+          "unit": "rem",
+          "min": 0,
+          "max": 3,
+          "step": 0.1,
+          "default": 0.9
+        },
+        {
+          "type": "range",
+          "id": "first_button_mobile_margin_top",
+          "label": "Mobile top",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "first_button_mobile_margin_left",
+          "label": "Mobile left",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "first_button_max_width_mobile",
+          "label": "Max width (mobile, %)",
+          "min": 10,
+          "max": 100,
+          "step": 5,
+          "default": 80
+        },
+        {
+          "type": "select",
+          "id": "first_button_mobile_align",
+          "label": "Text alignment (mobile)",
+          "default": "center",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ]
         },
         {
           "type": "header",
@@ -580,3 +1347,134 @@
   }
 }
 {% endschema %}
+{%stylesheet %}
+   .hero__description {
+      max-width: 65%;
+      word-wrap: break-word;
+      text-align: left;
+    }
+
+    .hero__description {
+      max-width: var(--max-width);
+      text-align: var(--text-align-desktop);
+    }
+
+    .slideshow .hero__button-group {
+      width: 100%;
+      position: absolute;
+      top: var(--top);
+      left: var(--left);
+      text-align: var(--text-align-desktop);
+    }
+
+     .slideshow .hero__button {
+      position: absolute;
+      top: var(--top);
+      left: var(--left);
+      max-width: var(--max-width);
+      font-size: var(--font-size-desktop);
+      text-align: var(--text-align-desktop);
+      }
+      .hero__button .btn {
+        font-size: inherit !important;
+      }
+    .slideshow .hero__title {
+      position: absolute;
+      top: var(--top);
+      left: var(--left);
+      font-size: var(--font-size-desktop);
+    }
+    .slideshow .hero__content__wrapper a.btn--no-bg {
+      background: transparent !important;
+      border: none !important;
+    }
+    .slideshow .hero__content__wrapper a.btn--border-bottom {
+      background: transparent !important;
+      border: none !important;
+      border-bottom: 2px solid currentColor !important;
+      padding: 0.3rem 0 !important;
+    }
+
+    .btn--no-hover-bg,
+    .btn--no-hover-bg:hover,
+    .btn--no-hover-bg:focus {
+      background: transparent !important;
+      transition: none !important;
+    }
+
+    .btn--no-hover-bg::before,
+    .btn--no-hover-bg::after {
+      display: none !important;
+      content: none !important;
+    }
+
+
+
+@media (min-width: 1400px) {
+  .slideshow .hero__title,
+  .slideshow .hero__description,
+  .slideshow .hero__button {
+    font-size: var(--font-size-desktop-xl) !important;
+    top: var(--top-xl) !important;
+    left: var(--left-xl) !important;
+  }
+}
+
+@media (max-width: 1399px) and (min-width: 1200px) {
+  .slideshow .hero__title,
+  .slideshow .hero__description,
+  .slideshow .hero__button {
+    font-size: var(--font-size-desktop) !important;
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 1000px) {
+  .slideshow .hero__title,
+  .slideshow .hero__description,
+  .slideshow .hero__button {
+    font-size: var(--font-size-desktop-xx) !important;
+    top: var(--top-xx) !important;
+    left: var(--left-xx) !important;
+  }
+}
+
+@media (max-width: 1000px) {
+  .slideshow .hero__title,
+  .slideshow .hero__description,
+  .slideshow .hero__button {
+    font-size: var(--font-size-tablet) !important;
+  }
+}
+
+@media (max-width: 750px) {
+  .slideshow .hero__button-group {
+    width: 100%;
+    position: relative;
+    top: var(--mobile-top);
+    left: var(--mobile-left);
+    text-align: var(--text-align-mobile);
+  }
+
+  .slideshow .hero__title {
+    width: 100%;
+    top: var(--mobile-top) !important;
+    left: var(--mobile-left) !important;
+    text-align: var(--mobile-align);
+    font-size: var(--font-size-mobile) !important;
+  }
+
+  .slideshow .hero__description {
+    max-width: var(--mobile-description-max-width);
+    font-size: var(--font-size-mobile) !important;
+    text-align: var(--mobile-description-align);
+    top: var(--mobile-description-top) !important;
+    left: var(--mobile-description-left) !important;
+  }
+
+  .slideshow .hero__button {
+    font-size: var(--font-size-mobile) !important;
+    max-width: var(--mobile-max-width);
+    position: relative;
+  }
+}
+{% endstylesheet %}
