@@ -42,6 +42,7 @@
             "title_font_family": "inherit",
             "title_font_color": "#ffffff",
             "title_font_weight": "400",
+            "title_centered": true,
             "title_margin_top": 36,
             "title_margin_left": 40,
             "heading_size": 8,
