@@ -166,7 +166,7 @@
                   {% assign mobile_title_position = block.settings.mobile_title_position | default: 'overlay' %}
                   <div class="slideshow__title-block {{ mobile_title_position }}" {{ block.shopify_attributes }}>
                     {%- assign font_size_class = block.settings.heading_size | prepend: 'heading-size-' -%}
-                    <h2 class="hero__title {{ font_size_class }}"
+                    <h2 class="hero__title {{ font_size_class }} {% if block.settings.title_centered %}hero__title--center{% endif %}"
                     style="
                        --top: {{ block.settings.title_margin_top | default: 0 }}%;
                        --left: {{ block.settings.title_margin_left | default: 0 }}%;
@@ -521,6 +521,12 @@
             { "value": "700", "label": "Bold (700)" },
             { "value": "800", "label": "Extra-bold (800)" }
           ]
+        },
+        {
+          "type": "checkbox",
+          "id": "title_centered",
+          "label": "Center title",
+          "default": false
         },
         {
           "type": "header",
@@ -1408,6 +1414,12 @@
       content: none !important;
     }
 
+    .hero__title--center {
+      left: 50% !important;
+      transform: translateX(-50%);
+      text-align: center;
+      width: 100%;
+    }
 
 
 @media (min-width: 1400px) {
