@@ -415,12 +415,12 @@
         "image_nmxcMY": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/2_d9e38c1f-946d-4783-addf-548131419433.png",
-            "mobile_image": "shopify://shop_images/2_bc778bec-28cd-4a4a-8354-204480731fe8.png",
+            "image": "shopify://shop_images/Group_24.png",
+            "mobile_image": "shopify://shop_images/Frame_325.png",
             "overlay_opacity": 0,
             "overlay_color": "#000000",
             "show_overlay_text": false,
-            "title": "",
+            "title": "STRONG DESIGN FOR",
             "title_font_family": "inherit",
             "title_font_color": "#ffffff",
             "title_font_weight": "400",
@@ -440,7 +440,7 @@
             "title_font_size_tablet": 2,
             "title_font_size_mobile": 2,
             "mobile_title_align": "center",
-            "description": "",
+            "description": "TOUGH\nTRIALS.",
             "text_size": 5,
             "flex_align_desktop": "align--middle-center-desktop",
             "description_font_family": "inherit",
@@ -466,7 +466,7 @@
             "description_font_size_mobile": 1,
             "bg_color": "",
             "color": "#ffffff",
-            "first_button_text": "",
+            "first_button_text": "SHOP NOW",
             "first_button_link": "shopify://collections/laptop-bags",
             "first_button_type": "btn--primary",
             "first_button_size": "btn--large",
@@ -506,8 +506,8 @@
         "image_prRaeF": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/3_8e9ef144-1c4e-4e7e-9d18-940da2de842c.png",
-            "mobile_image": "shopify://shop_images/3_5c65a7a9-0cd4-4519-8e75-b2314b8f2a75.png",
+            "image": "shopify://shop_images/Group_26.png",
+            "mobile_image": "shopify://shop_images/Frame_326.png",
             "overlay_opacity": 0,
             "overlay_color": "#000000",
             "show_overlay_text": false,
@@ -597,8 +597,8 @@
         "image_7KWz8T": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/4_31e6c02e-2c96-485e-bc96-5ec3de289ff4.png",
-            "mobile_image": "shopify://shop_images/4_f9dd88b9-4adc-4107-b55e-98f553a2c7d3.png",
+            "image": "shopify://shop_images/Group_28.png",
+            "mobile_image": "shopify://shop_images/Frame_327.png",
             "overlay_opacity": 0,
             "overlay_color": "#000000",
             "show_overlay_text": false,
@@ -688,8 +688,8 @@
         "image_3XwQMY": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/5.png",
-            "mobile_image": "shopify://shop_images/5_7f1de0b6-246d-42fa-b871-e3cd8fa199b7.png",
+            "image": "shopify://shop_images/Group_29.png",
+            "mobile_image": "shopify://shop_images/Frame_328.png",
             "overlay_opacity": 0,
             "overlay_color": "#000000",
             "show_overlay_text": false,
@@ -779,8 +779,8 @@
         "image_Mn4Tf8": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/6_eb6ec1ef-5b01-41ad-b882-0a75417e4700.png",
-            "mobile_image": "shopify://shop_images/6_948c161f-c879-4876-a53f-73cc873eb04d.png",
+            "image": "shopify://shop_images/Group_23.png",
+            "mobile_image": "shopify://shop_images/Group_23.png",
             "overlay_opacity": 0,
             "overlay_color": "#000000",
             "show_overlay_text": false,
