@@ -307,14 +307,14 @@
         "image_kkweWj": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/w1.png",
-            "mobile_image": "shopify://shop_images/m2.png",
+            "image": "shopify://shop_images/Group_18.png",
+            "mobile_image": "shopify://shop_images/Group_22.png",
             "overlay_opacity": 0,
             "overlay_color": "#000000",
             "show_overlay_text": false,
             "title": "LONG LASTING DESIGN FOR ANY",
             "title_font_family": "inherit",
-            "title_font_color": "#ffffff",
+            "title_font_color": "#e43939",
             "title_font_weight": "400",
             "title_centered": false,
             "title_margin_top": 0,
