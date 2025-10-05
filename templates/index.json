@@ -460,7 +460,7 @@
             "description_mobile_align": "left",
             "description_max_width_mobile": 70,
             "flex_align_mobile": "align--middle-center-mobile",
-            "description_max_width": 65,
+            "description_max_width": 45,
             "description_font_size_desktop": 5.6,
             "description_font_size_tablet": 1.1,
             "description_font_size_mobile": 3.3,
