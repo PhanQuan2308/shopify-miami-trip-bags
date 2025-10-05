@@ -166,7 +166,7 @@
                   {% assign mobile_title_position = block.settings.mobile_title_position | default: 'overlay' %}
                   <div class="slideshow__title-block {{ mobile_title_position }}" {{ block.shopify_attributes }}>
                     {%- assign font_size_class = block.settings.heading_size | prepend: 'heading-size-' -%}
-                    <h2 class="hero__title {{ font_size_class }} {% if block.settings.title_centered %}hero__title--center{% endif %}"
+                    <h2 class="hero__title {{ font_size_class }} {% if block.settings.title_centered %}hero__title--center{% endif %} "data-sm-align="{{ block.settings.sm_title_align }}"
                     style="
                        --top: {{ block.settings.title_margin_top | default: 0 }}%;
                        --left: {{ block.settings.title_margin_left | default: 0 }}%;
@@ -186,6 +186,12 @@
                       --font-size-desktop-xx: {{ block.settings.title_font_size_desktop_xx | default: 2.2 }}rem;
                       --top-xx: {{ block.settings.title_margin_top_xx | default: 0 }}%;
                       --left-xx: {{ block.settings.title_margin_left_xx | default: 0 }}%;
+
+                       /* 🟢 small tablet 401–750px */
+                      --sm-title-top: {{ block.settings.sm_title_margin_top | default: 0 }}%;
+                      --sm-title-left: {{ block.settings.sm_title_margin_left | default: 0 }}%;
+                      --sm-title-font-size: {{ block.settings.sm_title_font_size | default: 2 }}rem;
+                      --sm-title-align: {{ block.settings.sm_title_align | default: 'center' }};
                     ">
                     {{ block.settings.title | escape }}
                   </h2>
@@ -196,7 +202,7 @@
                   {%- unless block.settings.description == '' -%}
                     {%- assign font_size_class = block.settings.text_size | prepend: 'body-size-' -%}
                   
-                    <p class="hero__description h5--body {{ font_size_class }} {% if block.settings.description_centered %}hero__description--center{% endif %}"
+                    <p class="hero__description h5--body {{ font_size_class }} {% if block.settings.description_centered %}hero__description--center{% endif %}" data-sm-align="{{ block.settings.sm_description_align }}"
                       style="
                         top: {{ block.settings.description_margin_top | default: 0 }}%;
                         right: {{ block.settings.description_margin_right | default: 0 }}%;
@@ -234,7 +240,7 @@
 
                   {%- if first_button_text != blank or second_button_text != blank -%}
                     <div class="hero__button-group"
-                    
+                        data-sm-align="{{ block.settings.sm_button_align }}"
                        style="
                           --top: {{ block.settings.first_button_margin_top }}%;
                           --left: {{ block.settings.first_button_margin_left }}%;
@@ -248,7 +254,14 @@
                           --font-size-desktop-xx: {{ block.settings.first_button_font_size_desktop_xx | default: 1 }}rem;
                           --top-xx: {{ block.settings.first_button_margin_top_xx | default: 0 }}%;
                           --left-xx: {{ block.settings.first_button_margin_left_xx | default: 0 }}%;
-                        "
+
+                          /* 🟢 small tablet 401–750px */
+                          --sm-button-top: {{ block.settings.sm_button_margin_top | default: 0 }}%;
+                          --sm-button-left: {{ block.settings.sm_button_margin_left | default: 0 }}%;
+                          --sm-button-font-size: {{ block.settings.sm_button_font_size | default: 1 }}rem;
+                          --sm-button-max-width: {{ block.settings.sm_button_max_width | default: 80 }}%;
+                          --sm-button-align: {{ block.settings.sm_button_align | default: 'center' }};
+                                              "
                     >
                       {%- unless first_button_text == blank -%}
                         <div class="hero__button"
@@ -635,6 +648,51 @@
           "unit": "%",
           "default": 0
         },
+          {
+          "type": "header",
+          "content": "Small Tablet (401–750px) Settings"
+        },
+        {
+          "type": "range",
+          "id": "sm_title_margin_top",
+          "label": "Title top (small tablet)",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "sm_title_margin_left",
+          "label": "Title left (small tablet)",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "sm_title_font_size",
+          "label": "Title font size (small tablet)",
+          "unit": "rem",
+          "min": 0.5,
+          "max": 5,
+          "step": 0.1,
+          "default": 2
+        },
+        {
+          "type": "select",
+          "id": "sm_title_align",
+          "label": "Title alignment (small tablet)",
+          "default": "center",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ]
+        },
          {
         "type": "header",
         "content": "Mobile title position"
@@ -876,50 +934,105 @@
           "unit": "%",
           "default": 0
         },
-    {
-      "type": "header",
-      "content": "Mobile description position"
-    },
-    {
-      "type": "range",
-      "id": "description_mobile_margin_top",
-      "label": "Mobile top",
-      "min": -100,
-      "max": 100,
-      "step": 2,
-      "unit": "%",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "description_mobile_margin_left",
-      "label": "Mobile left",
-      "min": -100,
-      "max": 100,
-      "step": 2,
-      "unit": "%",
-      "default": 0
-    },
-    {
-      "type": "select",
-      "id": "description_mobile_align",
-      "label": "Mobile text alignment",
-      "default": "left",
-      "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "center", "label": "Center" },
-        { "value": "right", "label": "Right" }
-      ]
-    },
-    {
-        "type": "range",
-        "id": "description_max_width_mobile",
-        "label": "Description max width (mobile, %)",
-        "min": 10,
-        "max": 100,
-        "step": 5,
-        "default": 90
-      },
+        {
+          "type": "header",
+          "content": "Small Tablet (401–750px) — Description"
+        },
+        {
+          "type": "range",
+          "id": "sm_description_margin_top",
+          "label": "Description top (tablet)",
+          "unit": "%",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "sm_description_margin_left",
+          "label": "Description left (tablet)",
+          "unit": "%",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "sm_description_font_size",
+          "label": "Description font size (tablet)",
+          "unit": "rem",
+          "min": 0.5,
+          "max": 5,
+          "step": 0.1,
+          "default": 1.1
+        },
+        {
+          "type": "range",
+          "id": "sm_description_max_width",
+          "label": "Description max width (tablet, %)",
+          "unit": "%",
+          "min": 10,
+          "max": 100,
+          "step": 5,
+          "default": 85
+        },
+        {
+          "type": "select",
+          "id": "sm_description_align",
+          "label": "Description alignment (tablet)",
+          "default": "center",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Mobile description position"
+        },
+        {
+          "type": "range",
+          "id": "description_mobile_margin_top",
+          "label": "Mobile top",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "description_mobile_margin_left",
+          "label": "Mobile left",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "description_mobile_align",
+          "label": "Mobile text alignment",
+          "default": "left",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ]
+        },
+        {
+            "type": "range",
+            "id": "description_max_width_mobile",
+            "label": "Description max width (mobile, %)",
+            "min": 10,
+            "max": 100,
+            "step": 5,
+            "default": 90
+          },
         {
           "type": "select",
           "id": "flex_align_mobile",
@@ -1154,6 +1267,61 @@
           "step": 2,
           "unit": "%",
           "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Small Tablet (401–750px) — First Button"
+        },
+        {
+          "type": "range",
+          "id": "sm_button_margin_top",
+          "label": "Button top (tablet)",
+          "unit": "%",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "sm_button_margin_left",
+          "label": "Button left (tablet)",
+          "unit": "%",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "sm_button_font_size",
+          "label": "Button font size (tablet)",
+          "unit": "rem",
+          "min": 0,
+          "max": 3,
+          "step": 0.1,
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "sm_button_max_width",
+          "label": "Button max width (tablet, %)",
+          "unit": "%",
+          "min": 10,
+          "max": 100,
+          "step": 5,
+          "default": 80
+        },
+        {
+          "type": "select",
+          "id": "sm_button_align",
+          "label": "Button alignment (tablet)",
+          "default": "center",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ]
         },
         {
           "type": "header",
@@ -1469,7 +1637,56 @@
   }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 765px) and (min-width: 401px) {
+  .slideshow .hero__title {
+    top: var(--sm-title-top) !important;
+    left: var(--sm-title-left) !important;
+    text-align: var(--sm-title-align);
+    font-size: var(--sm-title-font-size) !important;
+  }
+
+  .slideshow .hero__title[data-sm-align="center"],
+  .slideshow .hero__title--center-sm {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  .slideshow .hero__description {
+    top: var(--sm-description-margin-top) !important;
+    left: var(--sm-description-margin-left) !important;
+    text-align: var(--sm-description-align);
+    max-width: var(--sm-description-max-width);
+    font-size: var(--sm-description-font-size) !important;
+  }
+
+  .slideshow .hero__description[data-sm-align="center"],
+  .slideshow .hero__description--center-sm {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  .slideshow .hero__button-group {
+    top: var(--sm-button-top);
+    left: var(--sm-button-left);
+    text-align: var(--sm-button-align);
+  }
+
+  .slideshow .hero__button-group[data-sm-align="center"],
+  .slideshow .hero__button-group--center-sm {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+}
+
+
+
+@media (max-width: 400px) {
   .slideshow .hero__button-group {
     width: 100%;
     position: absolute;
@@ -1499,9 +1716,6 @@
     max-width: var(--mobile-max-width);
     position: relative;
   }
-
-
-  
 }
 
 .slideshow .hero__title--center {
