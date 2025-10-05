@@ -472,7 +472,7 @@
             "first_button_size": "btn--large",
             "first_button_style": "btn--solid",
             "first_button_show_arrow": false,
-            "first_button_margin_top": 76,
+            "first_button_margin_top": 36,
             "first_button_margin_left": 24,
             "first_button_max_width": 40,
             "first_button_text_align": "center",
