@@ -318,6 +318,7 @@
                   {%- endif -%}
                   {%- unless second_button_text == blank -%}
                       <div class="hero__button hero__button--second"
+                      data-sm-align="{{ block.settings.sm_second_button_align }}"
                         style="
                           /* Vị trí và kích thước chính */
                           top: {{ block.settings.second_button_margin_top }}%;
