@@ -313,21 +313,63 @@
                         </div>
                       {%- endunless -%}
 
-                      {%- unless second_button_text == blank -%}
-                        <div class="hero__button"
-                          data-aos="hero"
-                          data-aos-anchor="{{ animation_anchor }}"
-                          data-aos-order="{{ animation_order }}">
-                          <a class="btn {{ second_button_size }} {{ second_button_style }} {{ second_button_type }}"
-                            href="{{ second_button_link | default: '#!' }}">
-                            <span>{{ second_button_text | escape }}</span>
+                    {%- unless second_button_text == blank -%}
+                      <div class="hero__button hero__button--second"
+                        style="
+                          /* Vị trí và kích thước chính */
+                          top: {{ block.settings.second_button_margin_top }}%;
+                          left: {{ block.settings.second_button_margin_left }}%;
+                          max-width: {{ block.settings.second_button_max_width }}%;
+                          font-family: {{ block.settings.second_button_font_family }};
+                          font-weight: {{ block.settings.second_button_font_weight }};
+                          color: {{ block.settings.second_button_text_color }};
+                          
+                          /* 🔹 Tách biến riêng biệt cho SECOND BUTTON */
+                          --second-button-font-size-desktop: {{ block.settings.second_button_font_size_desktop }}rem;
+                          --second-button-font-size-tablet: {{ block.settings.second_button_font_size_tablet }}rem;
+                          --second-button-font-size-mobile: {{ block.settings.second_button_font_size_mobile }}rem;
+                          --second-button-text-align-desktop: {{ block.settings.second_button_text_align }};
+                          --second-button-text-align-mobile: {{ block.settings.second_button_mobile_align }};
+                          --second-button-max-width-mobile: {{ block.settings.second_button_max_width_mobile }}%;
 
-                            {%- if second_button_show_arrow -%}
-                              {%- render 'icon-arrow-right' -%}
-                            {%- endif -%}
-                          </a>
-                        </div>
-                      {%- endunless -%}
+                          /* 🔹 XL breakpoint */
+                          --second-button-font-size-desktop-xl: {{ block.settings.second_button_font_size_desktop_xl | default: 1.2 }}rem;
+                          --second-button-top-xl: {{ block.settings.second_button_margin_top_xl | default: 0 }}%;
+                          --second-button-left-xl: {{ block.settings.second_button_margin_left_xl | default: 0 }}%;
+
+                          /* 🔹 XX breakpoint (1000–1199px) */
+                          --second-button-font-size-desktop-xx: {{ block.settings.second_button_font_size_desktop_xx | default: 1 }}rem;
+                          --second-button-top-xx: {{ block.settings.second_button_margin_top_xx | default: 0 }}%;
+                          --second-button-left-xx: {{ block.settings.second_button_margin_left_xx | default: 0 }}%;
+
+                          /* 🔹 Small Tablet (401–749px) */
+                          --sm-second-button-top: {{ block.settings.sm_second_button_margin_top | default: 0 }}%;
+                          --sm-second-button-left: {{ block.settings.sm_second_button_margin_left | default: 0 }}%;
+                          --sm-second-button-font-size: {{ block.settings.sm_second_button_font_size | default: 1 }}rem;
+                          --sm-second-button-max-width: {{ block.settings.sm_second_button_max_width | default: 80 }}%;
+                          --sm-second-button-align: {{ block.settings.sm_second_button_align | default: 'center' }};
+                        "
+                        data-aos="hero"
+                        data-aos-anchor="{{ animation_anchor }}"
+                        data-aos-order="{{ animation_order }}">
+                        
+                        <a class="btn {{ second_button_size }} {{ second_button_style }} {{ second_button_type }}
+                          {% unless block.settings.second_button_hover_background %} btn--no-hover-bg{% endunless %}
+                          {% if block.settings.second_button_no_background %} btn--no-bg{% endif %}
+                          {% if block.settings.second_button_border_bottom %} btn--border-bottom{% endif %}"
+                          href="{{ second_button_link | default: '#!' }}"
+                          style="
+                            font-family: {{ block.settings.second_button_font_family }};
+                            font-weight: {{ block.settings.second_button_font_weight }};
+                            color: {{ block.settings.second_button_text_color }};
+                          ">
+                          <span>{{ second_button_text | escape }}</span>
+                          {%- if second_button_show_arrow -%}
+                            {%- render 'icon-arrow-right' -%}
+                          {%- endif -%}
+                        </a>
+                      </div>
+                    {%- endunless -%}
                     </div>
                   {%- endif -%}
                 </div>
@@ -1466,59 +1508,359 @@
           ]
         },
         {
-          "type": "header",
-          "content": "Second button"
-        },
-        {
-          "type": "text",
-          "id": "second_button_text",
-          "label": "Text"
-        },
-        {
-          "type": "url",
-          "id": "second_button_link",
-          "label": "Link"
-        },
-        {
-          "type": "select",
-          "id": "second_button_type",
-          "label": "Color",
-          "default": "btn--white",
-          "options": [
-            {"value": "btn--primary", "label": "Primary"},
-            {"value": "btn--secondary", "label": "Secondary"},
-            {"value": "btn--white", "label": "White"},
-            {"value": "btn--black", "label": "Black"}
-          ]
-        },
-        {
-          "type": "select",
-          "id": "second_button_size",
-          "label": "Size",
-          "default": "",
-          "options": [
-            { "label": "Small", "value": "btn--small" },
-            { "label": "Medium", "value": "" },
-            { "label": "Large", "value": "btn--large" }
-          ]
-        },
-        {
-          "type": "select",
-          "id": "second_button_style",
-          "label": "Style",
-          "default": "btn--solid",
-          "options": [
-            { "label": "Solid", "value": "btn--solid" },
-            { "label": "Outline", "value": "btn--outline" },
-            { "label": "Text", "value": "btn--text" }
-          ]
-        },
-        {
-          "type": "checkbox",
-          "id": "second_button_show_arrow",
-          "label": "Show arrow",
-          "default": false
-        }
+            "type": "header",
+            "content": "Second button"
+          },
+          {
+            "type": "text",
+            "id": "second_button_text",
+            "label": "Text",
+            "default": "Learn more",
+            "info": "Leave blank to hide the button"
+          },
+          {
+            "type": "url",
+            "id": "second_button_link",
+            "label": "Link"
+          },
+          {
+            "type": "select",
+            "id": "second_button_type",
+            "label": "Color",
+            "default": "btn--white",
+            "options": [
+              { "value": "btn--primary", "label": "Primary" },
+              { "value": "btn--secondary", "label": "Secondary" },
+              { "value": "btn--white", "label": "White" },
+              { "value": "btn--black", "label": "Black" }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "second_button_size",
+            "label": "Size",
+            "default": "",
+            "options": [
+              { "label": "Small", "value": "btn--small" },
+              { "label": "Medium", "value": "" },
+              { "label": "Large", "value": "btn--large" }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "second_button_style",
+            "label": "Style",
+            "default": "btn--solid",
+            "options": [
+              { "label": "Solid", "value": "btn--solid" },
+              { "label": "Outline", "value": "btn--outline" },
+              { "label": "Text", "value": "btn--text" }
+            ]
+          },
+          {
+            "type": "checkbox",
+            "id": "second_button_show_arrow",
+            "label": "Show arrow",
+            "default": false
+          },
+          {
+            "type": "select",
+            "id": "second_button_font_family",
+            "label": "Font family for second button",
+            "default": "inherit",
+            "options": [
+              { "value": "inherit", "label": "Default" },
+              { "value": "'Poppins', sans-serif", "label": "Poppins" },
+              { "value": "'Roboto', sans-serif", "label": "Roboto" },
+              { "value": "'Playfair Display', serif", "label": "Playfair Display" },
+              { "value": "'Montserrat', sans-serif", "label": "Montserrat" },
+              { "value": "'Lora', serif", "label": "Lora" },
+              { "value": "'Merriweather', serif", "label": "Merriweather" },
+              { "value": "'Raleway', sans-serif", "label": "Raleway" },
+              { "value": "'Open Sans', sans-serif", "label": "Open Sans" },
+              { "value": "'Oswald', sans-serif", "label": "Oswald" },
+              { "value": "'Nunito', sans-serif", "label": "Nunito" },
+              { "value": "'Cinzel', serif", "label": "Cinzel" },
+              { "value": "'Source Sans Pro', sans-serif", "label": "Source Sans Pro" },
+              { "value": "'Quicksand', sans-serif", "label": "Quicksand" }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "second_button_font_weight",
+            "label": "Font weight",
+            "default": "500",
+            "options": [
+              { "value": "300", "label": "Light" },
+              { "value": "400", "label": "Regular" },
+              { "value": "500", "label": "Medium" },
+              { "value": "600", "label": "Semi-bold" },
+              { "value": "700", "label": "Bold" }
+            ]
+          },
+          {
+            "type": "color",
+            "id": "second_button_text_color",
+            "label": "Text color",
+            "default": "#ffffff"
+          },
+          {
+            "type": "checkbox",
+            "id": "second_button_no_background",
+            "label": "Remove button background",
+            "default": false
+          },
+          {
+            "type": "checkbox",
+            "id": "second_button_hover_background",
+            "label": "Enable hover background",
+            "default": true
+          },
+          {
+            "type": "checkbox",
+            "id": "second_button_border_bottom",
+            "label": "Show underline only",
+            "default": false
+          },
+          {
+            "type": "range",
+            "id": "second_button_margin_top",
+            "label": "Top",
+            "min": -100,
+            "max": 100,
+            "step": 2,
+            "unit": "%",
+            "default": 0
+          },
+          {
+            "type": "range",
+            "id": "second_button_margin_left",
+            "label": "Left",
+            "min": -100,
+            "max": 100,
+            "step": 2,
+            "unit": "%",
+            "default": 0
+          },
+          {
+            "type": "range",
+            "id": "second_button_max_width",
+            "label": "Max width (%)",
+            "min": 10,
+            "max": 100,
+            "step": 5,
+            "default": 40
+          },
+          {
+            "type": "select",
+            "id": "second_button_text_align",
+            "label": "Text alignment (desktop)",
+            "default": "center",
+            "options": [
+              { "value": "left", "label": "Left" },
+              { "value": "center", "label": "Center" },
+              { "value": "right", "label": "Right" }
+            ]
+          },
+          {
+            "type": "header",
+            "content": "Second button (XL desktop)"
+          },
+          {
+            "type": "range",
+            "id": "second_button_font_size_desktop_xl",
+            "label": "Button font size (XL desktop)",
+            "unit": "rem",
+            "min": 0,
+            "max": 5,
+            "step": 0.1,
+            "default": 1.2
+          },
+          {
+            "type": "range",
+            "id": "second_button_margin_top_xl",
+            "label": "Button top (XL desktop)",
+            "min": -100,
+            "max": 100,
+            "step": 2,
+            "unit": "%",
+            "default": 0
+          },
+          {
+            "type": "range",
+            "id": "second_button_margin_left_xl",
+            "label": "Button left (XL desktop)",
+            "min": -100,
+            "max": 100,
+            "step": 2,
+            "unit": "%",
+            "default": 0
+          },
+          {
+            "type": "header",
+            "content": "Second button (XX)"
+          },
+          {
+            "type": "range",
+            "id": "second_button_font_size_desktop_xx",
+            "label": "Button font size (XX)",
+            "unit": "rem",
+            "min": 0,
+            "max": 3,
+            "step": 0.1,
+            "default": 1
+          },
+          {
+            "type": "range",
+            "id": "second_button_margin_top_xx",
+            "label": "Button top (XX)",
+            "min": -100,
+            "max": 100,
+            "step": 2,
+            "unit": "%",
+            "default": 0
+          },
+          {
+            "type": "range",
+            "id": "second_button_margin_left_xx",
+            "label": "Button left (XX)",
+            "min": -100,
+            "max": 100,
+            "step": 2,
+            "unit": "%",
+            "default": 0
+          },
+          {
+            "type": "header",
+            "content": "Small Tablet (401–749px) — Second Button"
+          },
+          {
+            "type": "range",
+            "id": "sm_second_button_margin_top",
+            "label": "Button top (tablet)",
+            "unit": "%",
+            "min": -100,
+            "max": 100,
+            "step": 2,
+            "default": 0
+          },
+          {
+            "type": "range",
+            "id": "sm_second_button_margin_left",
+            "label": "Button left (tablet)",
+            "unit": "%",
+            "min": -100,
+            "max": 100,
+            "step": 2,
+            "default": 0
+          },
+          {
+            "type": "range",
+            "id": "sm_second_button_font_size",
+            "label": "Button font size (tablet)",
+            "unit": "rem",
+            "min": 0,
+            "max": 3,
+            "step": 0.1,
+            "default": 1
+          },
+          {
+            "type": "range",
+            "id": "sm_second_button_max_width",
+            "label": "Button max width (tablet, %)",
+            "unit": "%",
+            "min": 10,
+            "max": 100,
+            "step": 5,
+            "default": 80
+          },
+          {
+            "type": "select",
+            "id": "sm_second_button_align",
+            "label": "Button alignment (tablet)",
+            "default": "center",
+            "options": [
+              { "value": "left", "label": "Left" },
+              { "value": "center", "label": "Center" },
+              { "value": "right", "label": "Right" }
+            ]
+          },
+          {
+            "type": "header",
+            "content": "Second button (mobile)"
+          },
+          {
+            "type": "range",
+            "id": "second_button_font_size_desktop",
+            "label": "Font size (desktop)",
+            "unit": "rem",
+            "min": 0,
+            "max": 3,
+            "step": 0.1,
+            "default": 1
+          },
+          {
+            "type": "range",
+            "id": "second_button_font_size_tablet",
+            "label": "Font size (tablet)",
+            "unit": "rem",
+            "min": 0,
+            "max": 3,
+            "step": 0.1,
+            "default": 1
+          },
+          {
+            "type": "range",
+            "id": "second_button_font_size_mobile",
+            "label": "Font size (mobile)",
+            "unit": "rem",
+            "min": 0,
+            "max": 3,
+            "step": 0.1,
+            "default": 0.9
+          },
+          {
+            "type": "range",
+            "id": "second_button_mobile_margin_top",
+            "label": "Mobile top",
+            "min": -100,
+            "max": 100,
+            "step": 2,
+            "unit": "%",
+            "default": 0
+          },
+          {
+            "type": "range",
+            "id": "second_button_mobile_margin_left",
+            "label": "Mobile left",
+            "min": -100,
+            "max": 100,
+            "step": 2,
+            "unit": "%",
+            "default": 0
+          },
+          {
+            "type": "range",
+            "id": "second_button_max_width_mobile",
+            "label": "Max width (mobile, %)",
+            "min": 10,
+            "max": 100,
+            "step": 5,
+            "default": 80
+          },
+          {
+            "type": "select",
+            "id": "second_button_mobile_align",
+            "label": "Text alignment (mobile)",
+            "default": "center",
+            "options": [
+              { "value": "left", "label": "Left" },
+              { "value": "center", "label": "Center" },
+              { "value": "right", "label": "Right" }
+            ]
+          }
+
+
       ]
     }
   ],
@@ -1606,6 +1948,14 @@
     }
 
     
+.slideshow .hero__button--second {
+  position: absolute;
+  font-size: var(--second-button-font-size-desktop);
+  top: var(--second-button-top);
+  left: var(--second-button-left);
+  max-width: var(--second-button-max-width);
+  text-align: var(--second-button-text-align-desktop);
+}
 
 
 
@@ -1616,6 +1966,12 @@
     font-size: var(--font-size-desktop-xl) !important;
     top: var(--top-xl) !important;
     left: var(--left-xl) !important;
+  }
+
+   .slideshow .hero__button--second {
+    font-size: var(--second-button-font-size-desktop-xl) !important;
+    top: var(--second-button-top-xl) !important;
+    left: var(--second-button-left-xl) !important;
   }
 }
 
@@ -1634,6 +1990,11 @@
     font-size: var(--font-size-desktop-xx) !important;
     top: var(--top-xx) !important;
     left: var(--left-xx) !important;
+  }
+  .slideshow .hero__button--second {
+    font-size: var(--second-button-font-size-desktop-xx) !important;
+    top: var(--second-button-top-xx) !important;
+    left: var(--second-button-left-xx) !important;
   }
 }
 
@@ -1657,7 +2018,12 @@
   text-align: center !important;
   width: 100% !important;
 }
-
+.slideshow .hero__button--second {
+  font-size: var(--font-size-desktop);
+  top: var(--top);
+  left: var(--left);
+  text-align: var(--text-align-desktop);
+}
 @media (max-width: 749px) and (min-width: 401px) {
   .slideshow .hero__title {
     top: var(--sm-title-top) !important;
@@ -1708,6 +2074,20 @@
     left: 50% !important;
     transform: translateX(-50%) !important;
   }
+  .slideshow .hero__button--second {
+    font-size: var(--sm-second-button-font-size) !important;
+    top: var(--sm-second-button-top) !important;
+    left: var(--sm-second-button-left) !important;
+    max-width: var(--sm-second-button-max-width) !important;
+    text-align: var(--sm-second-button-align) !important;
+  }
+
+  .slideshow .hero__button--second[data-sm-align="center"] {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
 }
 
 
@@ -1742,6 +2122,16 @@
     max-width: var(--mobile-max-width);
     position: relative;
   }
+
+.slideshow .hero__button--second {
+    font-size: var(--second-button-font-size-mobile) !important;
+    top: var(--second-button-mobile-top) !important;
+    left: var(--second-button-mobile-left) !important;
+    max-width: var(--second-button-max-width-mobile) !important;
+    text-align: var(--second-button-text-align-mobile) !important;
+  }
+
+  
 }
 
 
