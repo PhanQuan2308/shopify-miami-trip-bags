@@ -1351,9 +1351,9 @@
             "second_button_font_size_desktop": 1,
             "second_button_font_size_tablet": 1,
             "second_button_font_size_mobile": 0.9,
-            "second_button_mobile_margin_top": 0,
+            "second_button_mobile_margin_top": 16,
             "second_button_mobile_margin_left": 0,
-            "second_button_max_width_mobile": 80,
+            "second_button_max_width_mobile": 90,
             "second_button_mobile_align": "center"
           }
         }
