@@ -1335,7 +1335,7 @@
             "second_button_border_bottom": true,
             "second_button_margin_top": 8,
             "second_button_margin_left": 70,
-            "second_button_max_width": 40,
+            "second_button_max_width": 65,
             "second_button_text_align": "center",
             "second_button_font_size_desktop_xl": 2.3,
             "second_button_margin_top_xl": 8,
