@@ -346,12 +346,13 @@
                           --second-button-top-xx: {{ block.settings.second_button_margin_top_xx | default: 0 }}%;
                           --second-button-left-xx: {{ block.settings.second_button_margin_left_xx | default: 0 }}%;
 
-                          /* 🔹 Small Tablet (401–749px) */
-                         --second-button-font-size-mobile: {{ block.settings.second_button_font_size_mobile }}rem;
-                      --second-button-text-align-mobile: {{ block.settings.second_button_mobile_align }};
-                      --second-button-max-width-mobile: {{ block.settings.second_button_max_width_mobile }}%;
-                      --second-button-mobile-top: {{ block.settings.second_button_mobile_margin_top | default: 0 }}%;
-                      --second-button-mobile-left: {{ block.settings.second_button_mobile_margin_left | default: 0 }}%;
+                         /* 🔹 Small Tablet (401–749px) */
+                          --sm-second-button-font-size: {{ block.settings.sm_second_button_font_size }}rem;
+                          --sm-second-button-top: {{ block.settings.sm_second_button_margin_top | default: 0 }}%;
+                          --sm-second-button-left: {{ block.settings.sm_second_button_margin_left | default: 0 }}%;
+                          --sm-second-button-max-width: {{ block.settings.sm_second_button_max_width | default: 80 }}%;
+                          --sm-second-button-align: {{ block.settings.sm_second_button_align | default: 'center' }};
+                        
                       "
                         data-aos="hero"
                         data-aos-anchor="{{ animation_anchor }}"
