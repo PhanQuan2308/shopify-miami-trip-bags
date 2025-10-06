@@ -328,13 +328,12 @@
                           font-weight: {{ block.settings.second_button_font_weight }};
                           color: {{ block.settings.second_button_text_color }};
                           
-                          /* 🔹 Tách biến riêng biệt cho SECOND BUTTON */
-                          --second-button-font-size-desktop: {{ block.settings.second_button_font_size_desktop }}rem;
-                          --second-button-font-size-tablet: {{ block.settings.second_button_font_size_tablet }}rem;
-                          --second-button-font-size-mobile: {{ block.settings.second_button_font_size_mobile }}rem;
-                          --second-button-text-align-desktop: {{ block.settings.second_button_text_align }};
-                          --second-button-text-align-mobile: {{ block.settings.second_button_mobile_align }};
+                          --second-button-mobile-top: {{ block.settings.second_button_mobile_margin_top }}%;
+                          --second-button-mobile-left: {{ block.settings.second_button_mobile_margin_left }}%;
                           --second-button-max-width-mobile: {{ block.settings.second_button_max_width_mobile }}%;
+                          --second-button-font-size-mobile: {{ block.settings.second_button_font_size_mobile }}rem;
+                          --second-button-text-align-mobile: {{ block.settings.second_button_mobile_align }};
+
 
                           /* 🔹 XL breakpoint */
                           --second-button-font-size-desktop-xl: {{ block.settings.second_button_font_size_desktop_xl | default: 1.2 }}rem;
