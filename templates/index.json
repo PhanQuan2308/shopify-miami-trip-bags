@@ -1294,7 +1294,7 @@
             "first_button_style": "btn--solid",
             "first_button_show_arrow": false,
             "first_button_margin_top": 10,
-            "first_button_margin_left": 0,
+            "first_button_margin_left": 2,
             "first_button_max_width": 40,
             "first_button_text_align": "center",
             "first_button_font_size_desktop_xl": 1.2,
