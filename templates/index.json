@@ -1233,7 +1233,7 @@
             "overlay_color": "#000000",
             "show_overlay_text": false,
             "title": "MORDERN STYLE with RFID Protection",
-            "title_font_family": "inherit",
+            "title_font_family": "'Playfair Display', serif",
             "title_font_color": "#f7f9fa",
             "title_font_weight": "400",
             "title_centered": false,
