@@ -452,7 +452,7 @@
             "bg_color": "",
             "color": "#ffffff",
             "first_button_text": "SHOP NOW",
-            "first_button_link": "shopify://products/ultimate-travel-organizer-bag-1",
+            "first_button_link": "shopify://collections/all",
             "first_button_type": "btn--primary",
             "first_button_size": "btn--large",
             "first_button_style": "btn--solid",
